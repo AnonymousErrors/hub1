@@ -14,4 +14,6 @@ elseif pid == 7336128600 then
     loadstring(game:HttpGet(current.."PetLegends.lua"))()
 elseif pid == 6769764667 then
     loadstring(game:HttpGet(current.."FactorySimulator.lua"))()
+elseif pid == 3823781113 then
+    loadstring(game:HttpGet(current.."sabersimremake2.lua"))()
 end
