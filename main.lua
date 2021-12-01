@@ -1,16 +1,17 @@
 local pid = game.PlaceId
+local current = "https://raw.githubusercontent.com/AnonymousErrors/hub1/main/"
 if pid == 6951762614 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/AnonymousErrors/newscripts/main/ufosim.lua"))()
+    loadstring(game:HttpGet(current.."ufosim.lua"))()
 elseif pid == 7065731541 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/AnonymousErrors/newscripts/main/speedmansim.lua"))()
+    loadstring(game:HttpGet(current.."speedmansim.lua"))()
 elseif pid == 7025847767 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/AnonymousErrors/newscripts/main/destroyedkidsim.lua"))()
+    loadstring(game:HttpGet(current.."destroyedkidsim.lua"))()
 elseif pid == 7363174769 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/AnonymousErrors/newscripts/main/deliverymansim.lua"))()
+    loadstring(game:HttpGet(current.."deliverymansim.lua"))()
 elseif pid == 6766156863 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/AnonymousErrors/newscripts/main/strongmansim.lua"))()
+    loadstring(game:HttpGet(current.."strongmansim.lua"))()
 elseif pid == 7336128600 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/AnonymousErrors/newscripts/main/PetLegends.lua"))()
+    loadstring(game:HttpGet(current.."PetLegends.lua"))()
 elseif pid == 6769764667 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/AnonymousErrors/newscripts/main/FactorySimulator.lua"))()
+    loadstring(game:HttpGet(current.."FactorySimulator.lua"))()
 end
