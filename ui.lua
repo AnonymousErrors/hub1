@@ -33,7 +33,7 @@ function Library:main()
 	msgtitle.Position = UDim2.new(0, 17, 0, 1)
 	msgtitle.Size = UDim2.new(0.883333325, 0, 0, 35)
 	msgtitle.Font = Enum.Font.SourceSans
-	msgtitle.Text = "aaa"
+	msgtitle.Text = ""
 	msgtitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 	msgtitle.TextSize = 40.000
 	msgtitle.TextWrapped = true
@@ -55,7 +55,7 @@ function Library:main()
 	msgbody.TextYAlignment = Enum.TextYAlignment.Top
 	function Library:popup(title, msg, duration)
 		msgtitle.Text = title
-		msgtitle.Text = msg
+		msgbody.Text = msg
 		msgbg:TweenPosition(
 			UDim2.new(1,0,0.06,0),
 			Enum.EasingDirection.In,
@@ -73,7 +73,7 @@ function Library:main()
 		)
 		task.wait(0.25)
 		msgtitle.Text = ""
-		msgtitle.Text = ""
+		msgbody.Text = ""
 	end
 	local Frame = Instance.new("Frame")
 	local sl = Instance.new("Frame")
