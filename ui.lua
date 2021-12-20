@@ -33,7 +33,7 @@ function Library:main()
 	msgtitle.Position = UDim2.new(0, 17, 0, 1)
 	msgtitle.Size = UDim2.new(0.883333325, 0, 0, 35)
 	msgtitle.Font = Enum.Font.SourceSans
-	msgtitle.Text = ""
+	msgtitle.Text = "aaa"
 	msgtitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 	msgtitle.TextSize = 40.000
 	msgtitle.TextWrapped = true
