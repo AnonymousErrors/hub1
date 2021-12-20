@@ -54,6 +54,8 @@ function Library:main()
 	msgbody.TextXAlignment = Enum.TextXAlignment.Left
 	msgbody.TextYAlignment = Enum.TextYAlignment.Top
 	function Library:popup(title, msg, duration)
+		msgtitle.Text = title
+		msgtitle.Text = msg
 		msgbg:TweenPosition(
 			UDim2.new(1,0,0.06,0),
 			Enum.EasingDirection.In,
@@ -69,6 +71,9 @@ function Library:main()
 			0.25,
 			true
 		)
+		task.wait(0.25)
+		msgtitle.Text = ""
+		msgtitle.Text = ""
 	end
 	local Frame = Instance.new("Frame")
 	local sl = Instance.new("Frame")
