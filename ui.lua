@@ -54,6 +54,7 @@ function Library:main()
 	msgbody.TextXAlignment = Enum.TextXAlignment.Left
 	msgbody.TextYAlignment = Enum.TextYAlignment.Top
 	function Library:popup(title, msg, duration)
+	spawn(function()
 		msgtitle.Text = title
 		msgbody.Text = msg
 		msgbg:TweenPosition(
@@ -74,6 +75,12 @@ function Library:main()
 		task.wait(0.25)
 		msgtitle.Text = ""
 		msgbody.Text = ""
+		end)
+	end
+	function Library:Destroy(title,msg,time)
+	 Library:popup(title,msg,time)
+	 wait(time)
+	 ScreenGui:Remove()
 	end
 	local Frame = Instance.new("Frame")
 	local sl = Instance.new("Frame")
@@ -238,10 +245,12 @@ function Library:main()
 			)
 		end
 		--toggle
-		function section:addtoggle(name, callback)
+		function section:addtoggle(name, callback, default_val)
+		local toggle_t = {}
+		toggle_t.Enabled = default_val
 			local callback = callback or function()
 			end
-			local yet = false
+			
 			local toggle = Instance.new("TextLabel")
 			local UICorner_6 = Instance.new("UICorner")
 			local UICorner_5 = Instance.new("UICorner")
@@ -270,17 +279,24 @@ function Library:main()
 			TextButton_2.TextSize = 14.000
 			UICorner_5.CornerRadius = UDim.new(0, 5)
 			UICorner_5.Parent = TextButton_2
-			TextButton_2.Activated:Connect(
-				function()
-					yet = not yet
+			
+			function back_set(state)
+			toggle_t.Enabled = not toggle_t.Enabled
+					if state then
+					 toggle_t.Enabled = state
+					end
 					if yet then
 						TextButton_2.BackgroundColor3 = Color3.fromRGB(34, 139, 34)
 					else
 						TextButton_2.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 					end
-					callback(yet)
+					callback(toggle_t.Enabled)
+			end
+			function toggle_t:Set(state)
+			  
+					back_set(state)
 				end
-			)
+			TextButton_2.Activated:Connect(back_set)
 		end
 		--dropdown
 		function section:adddropdown(name, tbl, callback)
