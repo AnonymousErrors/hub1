@@ -106,7 +106,7 @@ function Library:main()
 	uiname.Position = UDim2.new(0.00999999978, 0, 0.0311418697, 0)
 	uiname.Size = UDim2.new(0, 145, 0, 25)
 	uiname.Font = Enum.Font.SourceSans
-	uiname.Text = "Anonymous Library"
+	uiname.Text = "Dacia Library"
 	uiname.TextColor3 = Color3.fromRGB(255, 255, 255)
 	uiname.TextSize = 14.000
 	local UICorner = Instance.new("UICorner")
