@@ -1,7 +1,9 @@
 local Library = {}
 function Library:main()
+    -- anti afk
 	local a=game:GetService'VirtualUser'game:service"Players".LocalPlayer.Idled:connect(function()a:CaptureController()a:ClickButton2(Vector2.new())wait(2)end)
-	local autoscanvas = loadstring(game:HttpGet("https://raw.githubusercontent.com/Fm-Trick/auto-canvas-size/master/AutoCanvasSize.lua",true))()
+	-- huge thanks for saving me time
+    local autoscanvas = loadstring(game:HttpGet("https://raw.githubusercontent.com/Fm-Trick/auto-canvas-size/master/AutoCanvasSize.lua",true))()
 	local ScreenGui = Instance.new("ScreenGui")
 	pcall(function() syn.protect_gui(ScreenGui) end) -- haha lol undetectable
 	-- Instances:
@@ -54,31 +56,29 @@ function Library:main()
 	msgbody.TextXAlignment = Enum.TextXAlignment.Left
 	msgbody.TextYAlignment = Enum.TextYAlignment.Top
 	function Library:popup(title, msg, duration)
-	spawn(function()
-		msgtitle.Text = title
-		msgbody.Text = msg
-		msgbg:TweenPosition(
-			UDim2.new(1,0,0.06,0),
-			Enum.EasingDirection.In,
-			Enum.EasingStyle.Sine,
-			0.25,
-			true
-		)
-		task.wait(duration)
-		msgbg:TweenPosition(
-			UDim2.new(1,480,0.06,0),
-			Enum.EasingDirection.Out,
-			Enum.EasingStyle.Sine,
-			0.25,
-			true
-		)
-		task.wait(0.25)
-		msgtitle.Text = ""
-		msgbody.Text = ""
-		end)
+            msgtitle.Text = title
+            msgbody.Text = msg
+            msgbg:TweenPosition(
+                UDim2.new(1,0,0.06,0),
+                Enum.EasingDirection.In,
+                Enum.EasingStyle.Sine,
+                0.25,
+                true
+            )
+            task.wait(duration)
+            msgbg:TweenPosition(
+                UDim2.new(1,480,0.06,0),
+                Enum.EasingDirection.Out,
+                Enum.EasingStyle.Sine,
+                0.25,
+                true
+            )
+            task.wait(0.25)
+            msgtitle.Text = ""
+            msgbody.Text = ""
 	end
 	function Library:Destroy(title,msg,time)
-	 Library:popup(title,msg,time)
+	 spawn(function() Library:popup(title,msg,time) end)
 	 wait(time)
 	 ScreenGui:Remove()
 	end
@@ -221,7 +221,9 @@ function Library:main()
 			button.Activated:Connect(callback)
 		end
 		--textbox
-		function section:addtextbox(placeholdertext, callback)
+		function section:addtextbox(placeholdertext, callback,default_val)
+            local textbox_t = {}
+            textbox_t.Value = default_val or ""
 			local TextBox = Instance.new("TextBox")
 			local UICorner = Instance.new("UICorner")
 			callback = callback or function()
@@ -235,14 +237,15 @@ function Library:main()
 			TextBox.PlaceholderText = placeholdertext
 			TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 			TextBox.TextSize = 14.000
-			TextBox.Text = ""
+			TextBox.Text = textbox_t.Value
 			UICorner.CornerRadius = UDim.new(0, 5)
 			UICorner.Parent = TextBox
 			TextBox.Changed:Connect(
 				function()
-					callback(TextBox.Text)
+					callback(textbox_t.Value)
 				end
 			)
+            return textbox_t
 		end
 		--[[
             toggle
@@ -284,7 +287,7 @@ function Library:main()
                 TextButton_2.BackgroundColor3 = Color3.fromRGB(34, 139, 34)
             end
 
-            function toggle_t:Set(new_state)
+            function toggle_t:set(new_state)
                 toggle_t.Enabled = not toggle_t.Enabled
                 if new_state then
                  toggle_t.Enabled = new_state
@@ -297,7 +300,7 @@ function Library:main()
                 callback(toggle_t.Enabled)
             end
             TextButton_2.Activated:Connect(function()
-                toggle_t:Set()
+                toggle_t:set()
             end)
             return toggle_t
 	    end
@@ -529,7 +532,6 @@ function Library:main()
 			lbl1.TextSize = 14.000
 			lbl1.TextWrapped = true
 			lbl1.TextXAlignment = Enum.TextXAlignment.Right
-			--scrippy part
 			lbl.MouseButton1Down:Connect(
 				function()
 					movingSlider = true
@@ -587,11 +589,7 @@ function Library:main()
 		return section
 	end
 	-- Scripts:
-	game:GetService("StarterGui"):SetCore(
-	"SendNotification",
-	{Title = "Info", Text = "Press shift to toggle gui", Duration = 4}
-	)
-
+    Library:popup("Info","Press shift to toggle gui",4)
 	local gui = ScreenGui
 	local gui1 = gui.Frame
 	local visible = true
@@ -609,8 +607,6 @@ function Library:main()
 			end
 		end
 	)
-	local UserInputService = game:GetService("UserInputService")
-
 	local dragging
 	local dragInput
 	local dragStart
