@@ -244,60 +244,62 @@ function Library:main()
 				end
 			)
 		end
-		--toggle
+		--[[
+            toggle
+        ]]--
 		function section:addtoggle(name, callback, default_val)
-		local toggle_t = {}
-		toggle_t.Enabled = default_val
-			local callback = callback or function()
-			end
-			
-			local toggle = Instance.new("TextLabel")
-			local UICorner_6 = Instance.new("UICorner")
-			local UICorner_5 = Instance.new("UICorner")
-			local TextButton_2 = Instance.new("TextButton")
-			toggle.Name = "troggle"
-			toggle.Parent = exsection
-			toggle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-			toggle.BorderColor3 = Color3.fromRGB(35, 35, 35)
-			toggle.Size = UDim2.new(0, 300, 0, 25)
-			toggle.Font = Enum.Font.SourceSans
-			toggle.Text = name
-			toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
-			toggle.TextSize = 14.000
-			exsection.CanvasSize = UDim2.new(1, 0, 1, 99999)
-			UICorner_6.CornerRadius = UDim.new(0, 5)
-			UICorner_6.Parent = toggle
-			TextButton_2.Parent = toggle
-			TextButton_2.AnchorPoint = Vector2.new(0, 0.5)
-			TextButton_2.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-			TextButton_2.BorderColor3 = Color3.fromRGB(35, 35, 35)
-			TextButton_2.Position = UDim2.new(0.0250000004, 0, 0.5, 0)
-			TextButton_2.Size = UDim2.new(0, 15, 0, 15)
-			TextButton_2.Font = Enum.Font.SourceSans
-			TextButton_2.Text = ""
-			TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
-			TextButton_2.TextSize = 14.000
-			UICorner_5.CornerRadius = UDim.new(0, 5)
-			UICorner_5.Parent = TextButton_2
-			
-			function back_set(state)
-			toggle_t.Enabled = not toggle_t.Enabled
-					if state then
-					 toggle_t.Enabled = state
-					end
-					if yet then
-						TextButton_2.BackgroundColor3 = Color3.fromRGB(34, 139, 34)
-					else
-						TextButton_2.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-					end
-					callback(toggle_t.Enabled)
-			end
-			function toggle_t:Set(state)
-			  
-					back_set(state)
-				end
-			TextButton_2.Activated:Connect(back_set)
-		end
+            local toggle_t = {}
+            toggle_t.Enabled = default_val
+            local callback = callback or function()end
+            
+            local toggle = Instance.new("TextLabel")
+            local UICorner_6 = Instance.new("UICorner")
+            local UICorner_5 = Instance.new("UICorner")
+            local TextButton_2 = Instance.new("TextButton")
+            toggle.Name = "troggle"
+            toggle.Parent = exsection
+            toggle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+            toggle.BorderColor3 = Color3.fromRGB(35, 35, 35)
+            toggle.Size = UDim2.new(0, 300, 0, 25)
+            toggle.Font = Enum.Font.SourceSans
+            toggle.Text = name
+            toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            toggle.TextSize = 14.000
+            exsection.CanvasSize = UDim2.new(1, 0, 1, 99999)
+            UICorner_6.CornerRadius = UDim.new(0, 5)
+            UICorner_6.Parent = toggle
+            TextButton_2.Parent = toggle
+            TextButton_2.AnchorPoint = Vector2.new(0, 0.5)
+            TextButton_2.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+            TextButton_2.BorderColor3 = Color3.fromRGB(35, 35, 35)
+            TextButton_2.Position = UDim2.new(0.0250000004, 0, 0.5, 0)
+            TextButton_2.Size = UDim2.new(0, 15, 0, 15)
+            TextButton_2.Font = Enum.Font.SourceSans
+            TextButton_2.Text = ""
+            TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+            TextButton_2.TextSize = 14.000
+            UICorner_5.CornerRadius = UDim.new(0, 5)
+            UICorner_5.Parent = TextButton_2
+            if default_val then
+                TextButton_2.BackgroundColor3 = Color3.fromRGB(34, 139, 34)
+            end
+            function back_set(new_state)
+                toggle_t.Enabled = not toggle_t.Enabled
+                if new_state then
+                 toggle_t.Enabled = new_state
+                end
+                if toggle_t.Enabled  then
+                    TextButton_2.BackgroundColor3 = Color3.fromRGB(34, 139, 34)
+                else
+                    TextButton_2.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+                end
+                callback(toggle_t.Enabled)
+            end
+            function toggle_t:Set(new_state)
+                back_set(new_state)
+            end
+            TextButton_2.Activated:Connect(back_set)
+	    end
 		--dropdown
 		function section:adddropdown(name, tbl, callback)
 			local dropdown = Instance.new("Frame")
