@@ -283,7 +283,8 @@ function Library:main()
             if default_val then
                 TextButton_2.BackgroundColor3 = Color3.fromRGB(34, 139, 34)
             end
-            function back_set(new_state)
+
+            function toggle_t:Set(new_state)
                 toggle_t.Enabled = not toggle_t.Enabled
                 if new_state then
                  toggle_t.Enabled = new_state
@@ -295,10 +296,10 @@ function Library:main()
                 end
                 callback(toggle_t.Enabled)
             end
-            function toggle_t:Set(new_state)
-                back_set(new_state)
-            end
-            TextButton_2.Activated:Connect(back_set)
+            TextButton_2.Activated:Connect(function()
+                toggle_t:Set()
+            end)
+            return toggle_t
 	    end
 		--dropdown
 		function section:adddropdown(name, tbl, callback)
