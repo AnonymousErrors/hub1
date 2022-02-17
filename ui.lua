@@ -242,6 +242,7 @@ function Library:main()
 			UICorner.Parent = TextBox
 			TextBox.Changed:Connect(
 				function()
+                    textbox_t.Value = TextBox.Text
 					callback(textbox_t.Value)
 				end
 			)
